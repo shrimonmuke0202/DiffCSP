@@ -105,7 +105,7 @@ class CSPDiffusion(BaseModule):
         sigmas_norm_per_atom = sigmas_norm.repeat_interleave(batch.num_atoms)[:, None]
         input_frac_coords = (frac_coords + sigmas_per_atom * rand_x) % 1.
 
-        gt_atom_types_onehot = F.one_hot(batch.atom_types - 1, num_classes=MAX_ATOMIC_NUM).float()
+        gt_atom_types_onehot = F.one_hot(batch.atom_types - 1, num_classes=MAX_ATOMIC_NUM).float() ## Atom type diffusion
 
         rand_t = torch.randn_like(gt_atom_types_onehot)
 
